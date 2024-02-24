@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>1229二分查找 | 周耀海的博客</title><meta name="keywords" content="LeetCode"><meta name="author" content="周耀海"><meta name="copyright" content="周耀海"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法，可以在数据规模的对数时间复杂度内完成查找。 写二分查找中最复杂的地方莫过于细节部分，包括是采用小于号还是小于等于号，是否需要+1或者-1等等。为方便起见，建议直接参考博主labuladong的博客我写了首诗，把二分搜索算法变成了默写题，采用左闭右闭的写法，所有+1和-1都需要。同时作者还提供了查找左边界和右边界的写法（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1229二分查找">
+<meta property="og:url" content="http://example.com/2022/12/30/1229%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/index.html">
+<meta property="og:site_name" content="周耀海的博客">
+<meta property="og:description" content="二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法，可以在数据规模的对数时间复杂度内完成查找。 写二分查找中最复杂的地方莫过于细节部分，包括是采用小于号还是小于等于号，是否需要+1或者-1等等。为方便起见，建议直接参考博主labuladong的博客我写了首诗，把二分搜索算法变成了默写题，采用左闭右闭的写法，所有+1和-1都需要。同时作者还提供了查找左边界和右边界的写法（">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/bg.jpg">
+<meta property="article:published_time" content="2022-12-30T00:08:16.000Z">
+<meta property="article:modified_time" content="2022-12-30T02:04:02.958Z">
+<meta property="article:author" content="周耀海">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/bg.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/12/30/1229%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1229二分查找',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-12-30 10:04:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.JPG" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">周耀海的博客</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">1229二分查找</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-12-30T00:08:16.000Z" title="Created 2022-12-30 08:08:16">2022-12-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-12-30T02:04:02.958Z" title="Updated 2022-12-30 10:04:02">2022-12-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="1229二分查找"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法，可以在数据规模的对数时间复杂度内完成查找。</p>
+<p>写二分查找中最复杂的地方莫过于细节部分，包括是采用小于号还是小于等于号，是否需要+1或者-1等等。为方便起见，建议直接参考博主labuladong的博客<a target="_blank" rel="noopener" href="https://labuladong.github.io/algo/di-ling-zh-bfe1b/wo-xie-le--3c789/">我写了首诗，把二分搜索算法变成了默写题</a>，采用左闭右闭的写法，所有+1和-1都需要。同时作者还提供了查找左边界和右边界的写法（左边界指连续一串数等于target，则返回最左边的索引）。强烈建议阅读。</p>
+<p>当然，除了手撸二分查找的写法，我们还可以直接调用C++的库函数实现。参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40160605/article/details/80150252">CSDN博主「brandong」博客</a></p>
+<p>lower_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个<strong>大于或等于</strong>num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p>
+<p>upper_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个<strong>大于</strong>num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p>
+<p>因此，通常我们可以使用如下写法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> pos = <span class="built_in">lower_bound</span>(nums.<span class="built_in">begin</span>(),nums.<span class="built_in">end</span>(),target)-nums.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">if</span>(pos==nums.<span class="built_in">size</span>()||nums[pos]!=target)<span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//找不到target数字</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">return</span> pos;</span><br></pre></td></tr></table></figure>
+
+<p>因此lower_bound同样可以用来得到target的左边界，而upper_bound可以用来得到target的右边界</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> left_bound=<span class="built_in">lower_bound</span>(nums.<span class="built_in">begin</span>(),nums.<span class="built_in">end</span>(),target)-nums.<span class="built_in">begin</span>();</span><br><span class="line"><span class="type">int</span> right_bound=<span class="built_in">upper_bound</span>(nums.<span class="built_in">begin</span>(),nums.<span class="built_in">end</span>(),target)-nums.<span class="built_in">begin</span>()<span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>以下列举部分经典二分查找的题目</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-a-2d-matrix/">74. Search a 2D Matrix</a></li>
+</ol>
+<p><img src="/Users/zyh/Documents/blog/source/_posts/1229%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/mat.jpg" alt="img"></p>
+<p>直观地想，二分查找会先搜索哪一行，再搜索哪一列，但是有一种简单的做法是直接把pos在[0,m*n-1]上进行二分查找。具体定位到矩阵里的位置时采用<code>matrix[mid/n][mid%n]</code>的写法。</p>
+<p>参考解法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">searchMatrix</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; matrix, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m=matrix.<span class="built_in">size</span>(),n=matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>,right=m*n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="type">int</span> mid =left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="type">int</span> x = matrix[mid/n][mid%n];</span><br><span class="line">            <span class="keyword">if</span>(x&lt;target)left=mid+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(x&gt;target)right=mid<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(x==target)<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-rotated-sorted-array/">33. Search in Rotated Sorted Array</a></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [4,5,6,7,0,1,2], target = 0</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>,right=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="type">int</span> mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==target)<span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">if</span>(nums[left]==target)<span class="keyword">return</span> left;<span class="comment">//此处建议直接把所有相等的地方都考虑进去，防止后续出现遗漏的情况</span></span><br><span class="line">            <span class="keyword">if</span>(nums[right]==target)<span class="keyword">return</span> right;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(nums[left]&lt;nums[mid])&#123;</span><br><span class="line">                <span class="keyword">if</span>(target&gt;nums[left]&amp;&amp;target&lt;nums[mid])right=mid<span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">else</span> left=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(target&gt;nums[mid]&amp;&amp;target&lt;nums[right])left=mid+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> right=mid<span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/">153. Find Minimum in Rotated Sorted Array</a></li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>,right=nums.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> ans=INT_MAX;</span><br><span class="line">        <span class="keyword">if</span>(nums[left]&lt;nums[right])<span class="keyword">return</span> nums[left];</span><br><span class="line">        <span class="keyword">while</span>(left&lt;=right)&#123;</span><br><span class="line">            <span class="type">int</span> mid=left+(right-left)/<span class="number">2</span>;</span><br><span class="line">            ans=<span class="built_in">min</span>(ans,nums[mid]);</span><br><span class="line">            <span class="keyword">if</span>(nums[left]&lt;=nums[mid])&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[mid]&gt;=nums[right])left=mid+<span class="number">1</span>;<span class="comment">//1⃣️</span></span><br><span class="line">                <span class="keyword">else</span> right=mid<span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                right=mid<span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>此题需要注意的是在算完mid之后，left..mid..right有可能重新成为正序排列，因此需要加入判断1⃣️处的判断语句</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="http://example.com">周耀海</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/12/30/1229%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">http://example.com/2022/12/30/1229%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LeetCode/">LeetCode</a></div><div class="post_share"><div class="social-share" data-image="/img/bg.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/07/01/0630%E5%8D%8A%E5%B9%B4%E5%A4%8D%E7%9B%98/"><img class="prev-cover" src="/img/bg.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">0630半年复盘</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/28/1227%E7%BB%9D%E5%8F%AB%E4%B9%8B%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E7%8E%B0%E7%8A%B6/"><img class="next-cover" src="/img/bg.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">1227绝叫之日本社会现状</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/12/25/1224%E5%85%B3%E4%BA%8EDFS%E5%92%8CBFS%E7%9A%84%E6%80%BB%E7%BB%93/" title="1224关于DFS和BFS的总结"><img class="cover" src="/img/bg.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-25</div><div class="title">1224关于DFS和BFS的总结</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.JPG" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">周耀海</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">29</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/12/20/2023%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2023年终总结"><img src="/img/bg.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2023年终总结"/></a><div class="content"><a class="title" href="/2023/12/20/2023%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2023年终总结">2023年终总结</a><time datetime="2023-12-20T06:28:26.000Z" title="Created 2023-12-20 14:28:26">2023-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/09/07/0906%E4%B8%A4%E5%B9%B4%E7%9A%84%E5%9B%9E%E5%BF%86%E5%BD%95%E2%80%94%E2%80%94%E5%A4%A7%E5%9B%9B%E4%B9%8B%E5%90%8E%E7%9A%84%E6%97%A5%E5%AD%90/" title="0906两年的回忆录——大四之后的日子"><img src="/img/bg.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="0906两年的回忆录——大四之后的日子"/></a><div class="content"><a class="title" href="/2023/09/07/0906%E4%B8%A4%E5%B9%B4%E7%9A%84%E5%9B%9E%E5%BF%86%E5%BD%95%E2%80%94%E2%80%94%E5%A4%A7%E5%9B%9B%E4%B9%8B%E5%90%8E%E7%9A%84%E6%97%A5%E5%AD%90/" title="0906两年的回忆录——大四之后的日子">0906两年的回忆录——大四之后的日子</a><time datetime="2023-09-07T00:05:24.000Z" title="Created 2023-09-07 08:05:24">2023-09-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/25/0824%E7%94%9F%E6%B4%BB%E5%92%8C%E6%9C%8B%E5%8F%8B/" title="0824生活和朋友"><img src="/img/bg.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="0824生活和朋友"/></a><div class="content"><a class="title" href="/2023/08/25/0824%E7%94%9F%E6%B4%BB%E5%92%8C%E6%9C%8B%E5%8F%8B/" title="0824生活和朋友">0824生活和朋友</a><time datetime="2023-08-24T22:58:57.000Z" title="Created 2023-08-25 06:58:57">2023-08-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/23/0822%E6%97%A0%E9%A2%98/" title="0822无题"><img src="/img/bg.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="0822无题"/></a><div class="content"><a class="title" href="/2023/08/23/0822%E6%97%A0%E9%A2%98/" title="0822无题">0822无题</a><time datetime="2023-08-23T05:32:33.000Z" title="Created 2023-08-23 13:32:33">2023-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/21/0820%E7%BB%8F%E5%8E%86/" title="0820经历"><img src="/img/bg.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="0820经历"/></a><div class="content"><a class="title" href="/2023/08/21/0820%E7%BB%8F%E5%8E%86/" title="0820经历">0820经历</a><time datetime="2023-08-20T18:03:00.000Z" title="Created 2023-08-21 02:03:00">2023-08-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 周耀海</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
